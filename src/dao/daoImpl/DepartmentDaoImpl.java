@@ -50,6 +50,11 @@ public class DepartmentDaoImpl implements DepartmentDao, GenericDao<Department> 
         try {
             for (Hospital hospital : DataBase.hospitals) {
                 if (hospital.getId().equals(hospitalId)) {
+                    for (Department department1:hospital.getDepartments()){
+                        if (department1.getDepartmentName().equalsIgnoreCase(department.getDepartmentName())){
+                            throw new MyException("отделение с таким названием уже существует");
+                        }
+                    }
                     hospital.getDepartments().add(department);
                     return "успешно добавлено";
                 }

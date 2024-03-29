@@ -89,6 +89,11 @@ public class PatientDaoImpl implements PatientDao, GenericDao<Patient> {
         try {
             for (Hospital hospital : DataBase.hospitals) {
                 if (hospital.getId().equals(hospitalId)) {
+                    for (Patient patient1 : hospital.getPatients()){
+                        if (patient1.getFirstName().equalsIgnoreCase(patient.getFirstName())&& patient1.getLastName().equalsIgnoreCase(patient.getLastName())){
+                            throw new MyException("пациент с таким ФиО уже существут");
+                        }
+                    }
                     hospital.getPatients().add(patient);
                     return "успешно добавлено";
                 }

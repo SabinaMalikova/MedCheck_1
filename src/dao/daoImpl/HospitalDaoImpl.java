@@ -11,8 +11,19 @@ import java.util.*;
 public class HospitalDaoImpl implements HospitalDao {
     @Override
     public String addHospital(Hospital hospital) {
-        DataBase.hospitals.add(hospital);
-        return "успешно добавлено";
+        try {
+            for (Hospital hospital1: DataBase.hospitals){
+                if (hospital1.getHospitalName().equalsIgnoreCase(hospital.getHospitalName())){
+                    throw new MyException("больница с таким названием уже существует");
+                }
+
+            }
+            DataBase.hospitals.add(hospital);
+            return "успешно добавлено";
+        }catch (MyException e){
+            System.out.println(e.getMessage());
+        }
+        return "";
     }
 
     @Override

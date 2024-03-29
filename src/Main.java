@@ -6,14 +6,12 @@ import model.Department;
 import model.Doctor;
 import model.Hospital;
 import model.Patient;
-import myException.MyException;
 import service.serviceImpl.DepartmentServiceImpl;
 import service.serviceImpl.DoctorServiceImpl;
 import service.serviceImpl.HospitalServiceImpl;
 import service.serviceImpl.PatientServiceImpl;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -168,6 +166,9 @@ public class Main {
                     break;
                 }
                 case "16": {
+
+
+
 
 
                 }
