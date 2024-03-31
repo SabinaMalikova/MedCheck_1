@@ -16,7 +16,7 @@ public class DoctorServiceImpl implements DoctorService, GenericService<Doctor> 
     }
 
     @Override
-    public String assignDoctorToDepartment(Long departmentId, List<Long> doctorsId) {
+    public String assignDoctorToDepartment(Long departmentId, Long doctorsId) {
         return doctorDao.assignDoctorToDepartment(departmentId,doctorsId);
     }
 

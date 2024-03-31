@@ -32,10 +32,23 @@ public class DoctorDaoImpl implements GenericDao<Doctor>, DoctorDao {
     }
 
     @Override
-    public String assignDoctorToDepartment(Long departmentId, List<Long> doctorsId) {
-        for (Hospital hospital : DataBase.hospitals) {
-
-
+    public String assignDoctorToDepartment(Long departmentId, Long doctorsId) {
+        try {
+            for (Hospital hospital : DataBase.hospitals) {
+                for (Department department : hospital.getDepartments()) {
+                    if (department.getId().equals(departmentId)) {
+                        for (Doctor doctor : hospital.getDoctors()) {
+                            if (doctor.getId().equals(doctorsId)){
+                                department.getDoctors().add(doctor);
+                            }
+                        }
+                        return "доктор успешно назначен в отделение";
+                    }
+                }
+            }
+            throw new MyException("департамент с таким ID не найден");
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -117,8 +130,7 @@ public class DoctorDaoImpl implements GenericDao<Doctor>, DoctorDao {
     public String updateById(Long id, Doctor doctor) {
         try {
             for (Hospital hospital : DataBase.hospitals) {
-                List<Doctor> doctors = hospital.getDoctors();
-                ListIterator<Doctor> iterator = doctors.listIterator();
+                ListIterator<Doctor> iterator = hospital.getDoctors().listIterator();
                 while (iterator.hasNext()) {
                     Doctor doctor1 = iterator.next();
                     if (doctor1.getId().equals(id)) {

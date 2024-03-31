@@ -90,8 +90,7 @@ public class DepartmentDaoImpl implements DepartmentDao, GenericDao<Department> 
     public String updateById(Long id, Department department) {
         try {
             for (Hospital hospital : DataBase.hospitals) {
-                List<Department> departments = hospital.getDepartments();
-                ListIterator<Department> iterator = departments.listIterator();
+                ListIterator<Department> iterator = hospital.getDepartments().listIterator();
                 while (iterator.hasNext()) {
                     Department department1 = iterator.next();
                     if (department1.getId().equals(id)) {

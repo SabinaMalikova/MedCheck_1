@@ -130,8 +130,7 @@ public class PatientDaoImpl implements PatientDao, GenericDao<Patient> {
     public String updateById(Long id, Patient patient) {
         try {
             for (Hospital hospital : DataBase.hospitals) {
-                List<Patient> patients = hospital.getPatients();
-                ListIterator<Patient> iterator = patients.listIterator();
+                ListIterator<Patient> iterator = hospital.getPatients().listIterator();
                 while (iterator.hasNext()) {
                     Patient patient1 = iterator.next();
                     if (patient1.getId().equals(id)) {

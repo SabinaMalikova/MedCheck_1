@@ -43,7 +43,6 @@ public class HospitalDaoImpl implements HospitalDao {
 
     @Override
     public List<Hospital> getAllHospital() {
-
         return DataBase.hospitals;
     }
 
